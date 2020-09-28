@@ -41,7 +41,8 @@
                         <TextBox Name="txtBody" Width="200" Height="130">
                         </TextBox>
                     </StackPanel>
-                </StackPanel>
+                </StackPanel>
+
                 <!--<Grid Margin=" 10, 30, 20, 10" Background="#FF8DB6DA">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="113*"/>
