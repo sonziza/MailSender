@@ -36,9 +36,9 @@
                     </StackPanel>
                     <StackPanel>
                         <Label Content="Тема письма"></Label>
-                        <TextBox Name="txtTitle"></TextBox>
+                        <TextBox Name="txtTitle" Text="Тестовое письмо"></TextBox>
                         <Label Content="Содержание"></Label>
-                        <TextBox Name="txtBody" Width="200" Height="130">
+                        <TextBox Name="txtBody" Text="Проверка на получение письма. Не отвечать на него!"  Width="200" Height="130">
                         </TextBox>
                     </StackPanel>
                 </StackPanel>

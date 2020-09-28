@@ -22,13 +22,16 @@ namespace WPFTest
         public MainWindow()
         {
             InitializeComponent();
+            EmailSendService service = new EmailSendService();
         }
 
         private void BtnSend_Click(object sender, RoutedEventArgs e)
         {
+
             //указываем адреса эл почты отправителя/получателя
             var mail_sender = new MailAddress(ConfData.sender_mail, ConfData.sender_name);
             var recipient = new MailAddress(ConfData.recipient_mail, ConfData.recipient_name);
+
 
             //создаем обьект сообщения отправителя/получателя
             using var message = new MailMessage(mail_sender, recipient)
