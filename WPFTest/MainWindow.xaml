@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="450" MinWidth="400" MinHeight="270">
+        Title="MainWindow" Height="400" Width="500" MinWidth="400" MinHeight="270">
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="#FF7BA9CA">
             <MenuItem Name="MenuFile" Header="Файл" />
@@ -26,12 +26,18 @@
                     </StackPanel.Background>
                     <StackPanel>
                         <Label Content="Логин" Margin="10,10,10,10" HorizontalAlignment="Left" />
+                        <Label Content="Почта отправителя" Margin="10,10,10,10" HorizontalAlignment="Left" />
                         <Label Content="Пароль" Margin="10,10,10,10" HorizontalAlignment="Left" />
+                        <Label Content="Получатель" Margin="10,10,10,10" HorizontalAlignment="Left" />
+                        <Label Content="Почта получателя" Margin="10,10,10,10" HorizontalAlignment="Left" />
                     </StackPanel>
                     <StackPanel>
-                        <TextBox Name="TxtLogin" Margin="10,15,10,10"  HorizontalAlignment="Left" Text="sonziza@yandex.ru" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <PasswordBox Name="TxtPass" Margin="10,15,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
-                        <CheckBox Name="CheckSSL" Margin="10,15,10,10"  Content="Включить SSL" />
+                        <TextBox Name="TxtLogin" Margin="10,16,10,10"  HorizontalAlignment="Left" Text="sonziza" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox Name="TxtSenderMail" Margin="10,16,10,10" HorizontalAlignment="Left" Text="sonziza@yandex.ru" VerticalAlignment="Top" Width="120"/>
+                        <PasswordBox Name="TxtPass" Margin="10,16,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
+                        <TextBox Name="TxtRecipient" Margin="10,16,10,10" HorizontalAlignment="Left" Text="sonzizaGoogle" VerticalAlignment="Top" Width="120"/>
+                        <TextBox Name="TxtRecipMail" Margin="10,18,10,10" HorizontalAlignment="Left" Text="sonziza159@gmail.com" VerticalAlignment="Top" Width="120"/>
+                        <CheckBox Name="CheckSSL" Margin="10,16,10,10"  Content="Включить SSL" />
                         <Button Name="BtnSend" Margin="10,0,10,10" Content="Отправить" Click="BtnSend_Click"/>
                     </StackPanel>
                     <StackPanel>
