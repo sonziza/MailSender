@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender", "MailSender\MailSender.csproj", "{8D51D6DC-5CA1-47CA-9478-E5A1938F1EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender", "MailSender\MailSender.csproj", "{8D51D6DC-5CA1-47CA-9478-E5A1938F1EEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{757BF07B-FCFE-4FE4-B31E-86F0BE95A2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMailConsole", "SendMailConsole\SendMailConsole.csproj", "{0F33864D-848C-4245-A652-98A7B4142C15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFTest", "WPFTest\WPFTest.csproj", "{068DCC3C-2AF6-4231-A4E8-CFA4B7248895}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,16 @@ Global
 		{8D51D6DC-5CA1-47CA-9478-E5A1938F1EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D51D6DC-5CA1-47CA-9478-E5A1938F1EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D51D6DC-5CA1-47CA-9478-E5A1938F1EEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F33864D-848C-4245-A652-98A7B4142C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F33864D-848C-4245-A652-98A7B4142C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F33864D-848C-4245-A652-98A7B4142C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F33864D-848C-4245-A652-98A7B4142C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068DCC3C-2AF6-4231-A4E8-CFA4B7248895}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068DCC3C-2AF6-4231-A4E8-CFA4B7248895}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068DCC3C-2AF6-4231-A4E8-CFA4B7248895}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068DCC3C-2AF6-4231-A4E8-CFA4B7248895}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0F33864D-848C-4245-A652-98A7B4142C15} = {757BF07B-FCFE-4FE4-B31E-86F0BE95A2D3}
+		{068DCC3C-2AF6-4231-A4E8-CFA4B7248895} = {757BF07B-FCFE-4FE4-B31E-86F0BE95A2D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {284E06A5-F0CB-4F37-9FA5-E2D315401A16}
