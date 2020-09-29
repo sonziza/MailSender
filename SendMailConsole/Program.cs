@@ -9,8 +9,8 @@ namespace SendMailConsole
         static void Main(string[] args)
         {
             //указываем адреса эл почты отправителя/получателя
-            var sender = new MailAddress("sonziza@yandex.ru", "Oleg");
-            var recipient = new MailAddress("sonziza159@gmail.com", "Olejoint");
+            var sender = new MailAddress("******@yandex.ru", "Oleg");
+            var recipient = new MailAddress("******@gmail.com", "Olejoint");
 
             //создаем обьект сообщения отправителя/получателя
             using var message = new MailMessage(sender, recipient)
@@ -22,8 +22,8 @@ namespace SendMailConsole
             //Создадим клиента-отправителя для общения с почтовым сервером по протоколу SMTP
             using (var client = new SmtpClient("smtp.yandex.ru", 587))
             {
-                const string login = "sonziza@yandex.ru";
-                const string password = "22Ks__Ol02";
+                const string login = "******@yandex.ru";
+                const string password = "******";
 
                 //Обычно сервер не дает отправлять письма анонимным пользователям
                 //Поэтому добавим информацию с нашими учетными данными
