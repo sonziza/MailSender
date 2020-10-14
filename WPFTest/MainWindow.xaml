@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="500" MinWidth="400" MinHeight="270">
+        Title="MainWindow" Height="400" Width="500" MinWidth="350" MinHeight="220">
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="#FF7BA9CA">
             <MenuItem Name="MenuFile" Header="Файл" />
@@ -17,21 +17,35 @@
         </StatusBar>
         <TabControl>
             <TabItem Header="Тест">
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel.Background>
+                <DockPanel>
+                    <DockPanel.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FFDDDDDD"/>
                             <GradientStop Color="#FF5E90B4" Offset="1"/>
                         </LinearGradientBrush>
-                    </StackPanel.Background>
-                    <StackPanel>
+                    </DockPanel.Background>
+                    <ToolBarTray DockPanel.Dock="Top">
+                        <ToolBar Header="Выберите smtp-сервер">
+                            <ComboBox Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"></ComboBox>
+                            <Button>
+                                <Image  Height="12"/>
+                            </Button>
+                            <Button>
+                                <Image Source="Media\edit.png" Height="12"/>
+                            </Button>
+                            <Button>
+                                <Image Source="Media\remove.png" Height="12"/>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <DockPanel>
                         <Label Content="Логин" Margin="10,10,10,10" HorizontalAlignment="Left" />
                         <Label Content="Почта отправителя" Margin="10,10,10,10" HorizontalAlignment="Left" />
                         <Label Content="Пароль" Margin="10,10,10,10" HorizontalAlignment="Left" />
                         <Label Content="Получатель" Margin="10,10,10,10" HorizontalAlignment="Left" />
                         <Label Content="Почта получателя" Margin="10,10,10,10" HorizontalAlignment="Left" />
-                    </StackPanel>
-                    <StackPanel>
+                    </DockPanel>
+                    <DockPanel>
                         <TextBox Name="TxtLogin" Margin="10,16,10,10"  HorizontalAlignment="Left" Text="sonziza" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                         <TextBox Name="TxtSenderMail" Margin="10,16,10,10" HorizontalAlignment="Left" Text="sonziza@yandex.ru" VerticalAlignment="Top" Width="120"/>
                         <PasswordBox Name="TxtPass" Margin="10,16,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120"/>
@@ -39,15 +53,15 @@
                         <TextBox Name="TxtRecipMail" Margin="10,18,10,10" HorizontalAlignment="Left" Text="sonziza159@gmail.com" VerticalAlignment="Top" Width="120"/>
                         <CheckBox Name="CheckSSL" Margin="10,16,10,10"  Content="Включить SSL" />
                         <Button Name="BtnSend" Margin="10,0,10,10" Content="Отправить" Click="BtnSend_Click"/>
-                    </StackPanel>
-                    <StackPanel>
+                    </DockPanel>
+                    <DockPanel>
                         <Label Content="Тема письма"></Label>
                         <TextBox Name="txtTitle" Text="Тестовое письмо"></TextBox>
                         <Label Content="Содержание"></Label>
                         <TextBox Name="txtBody" Text="Проверка на получение письма. Не отвечать на него!"  Width="200" Height="130">
                         </TextBox>
-                    </StackPanel>
-                </StackPanel>
+                    </DockPanel>
+                </DockPanel>
 
                 <!--<Grid Margin=" 10, 30, 20, 10" Background="#FF8DB6DA">
                     <Grid.ColumnDefinitions>

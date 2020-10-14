@@ -6,7 +6,86 @@
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="top">
+            <MenuItem Header="Файл"/>
+            <MenuItem Header="Закрыть"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <ResizeGrip/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="Готов!"/>
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl Name="tabList">
+            <TabItem Header="Списки">
+                <DockPanel>
+                    <ToolBarTray DockPanel.Dock="Top">
 
-    </Grid>
+                        <ToolBar Name="tbSenders" Header="Отправители" Band="0">
+                            <ComboBox Name="SendersList" MinWidth="120" MaxWidth="200"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="sonziza@yandex.ru"/>
+                                <ComboBoxItem Content="sonziza159@gmail.com"/>
+                                <ComboBoxItem Content="saharziza@mail.ru"/>
+                                <!--ItemsSource="{x:Static data:TestData.Senders}"-->                                      
+                                <!--<ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="m:Sender">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock 
+                                                Text="{Binding Name}" ToolTip="{Binding Address}"/>
+                                            --><!--<TextBlock>:</TextBlock>
+                                            <TextBlock Text="{Binding Address}" Opacity="0.4"/>--><!--
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>-->
+                            </ComboBox>
+                            <Button  ToolTip="Добавить" HorizontalAlignment="Stretch">
+                                <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
+                            </Button>
+                            <Button ToolTip="Редактировать"/>
+                            <Image Source="Images\edit.png" HorizontalAlignment="Right" Height="12"/>
+                            <Button ToolTip="Удалить">
+                                <Image Source="Images\remove.png" HorizontalAlignment="Right" Height="12"/>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Name="tbSmtp" Header="Выберите smtp-сервер" Band="1">
+                            <ComboBox Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"></ComboBox>
+                            <Button>
+                                <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
+                            </Button>
+                            <Button>
+                                <Image Source="Images\remove.png" Width="12" Height="12"/>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Name="tbToPlanner" Header="Перейти в планировщик:">
+                            <Button Name="btnToPlanner"  HorizontalAlignment="Center" Click="btnToPlanner_Click" >
+                                <!--ПЛАНИРОВЩИК-->
+                                <Image Source="Images\clock.png" HorizontalAlignment="Right" Width="12" Height="12"/>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Name="Addresses" Header="Список адресатов" Band="1">
+                            <Button  ToolTip="Добавить" HorizontalAlignment="Stretch">
+                                <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
+                            </Button>
+                            <Button ToolTip="Редактировать"/>
+                            <Image Source="Images\edit.png" HorizontalAlignment="Right" Height="12"/>
+                            <Button ToolTip="Удалить">
+                                <Image Source="Images\remove.png" HorizontalAlignment="Right" Height="12"/>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <Grid/>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Планировщик"></TabItem>
+            <TabItem Header="Редактор писем"></TabItem>
+            <TabItem Header="Статистика"></TabItem>
+        </TabControl>
+
+            
+        
+    </DockPanel>
 </Window>
