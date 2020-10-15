@@ -62,7 +62,6 @@
                         </ToolBar>
                         <ToolBar Name="tbToPlanner" Header="Перейти в планировщик:">
                             <Button Name="btnToPlanner"  HorizontalAlignment="Center" Click="btnToPlanner_Click" >
-                                <!--ПЛАНИРОВЩИК-->
                                 <Image Source="Images\clock.png" HorizontalAlignment="Right" Width="12" Height="12"/>
                             </Button>
                         </ToolBar>
@@ -77,12 +76,57 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <Grid/>
+                    <DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" MinWidth="30"/>
+                            <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Адрес" MinWidth="160" Binding="{Binding Address}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Планировщик"></TabItem>
-            <TabItem Header="Редактор писем"></TabItem>
-            <TabItem Header="Статистика"></TabItem>
+            <TabItem Name="tbPlanner" Header="Планировщик">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Calendar
+                        Grid.Column="0" Grid.Row="0"
+                        Name="cldSheduler"
+                        HorizontalAlignment="Left"
+                        SelectionMode="MultipleRange">                    
+                    </Calendar>
+                    <GroupBox Header="Время отправления"
+                        Grid.Column="0" Grid.Row="1">
+                        <StackPanel>
+                            <TextBox Name="tbTimePicker"/>
+                            <Button Name="btnPlan" >
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="5" Text="Отправить запранированно"></TextBlock>
+                                        <Image Margin="5" Source="Images/scheduler.png" HorizontalAlignment="Right" Height="16"></Image>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button Name="btnNow">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" Text="Отправить сразу"></TextBlock>
+                                    <Image Margin="5" Source="Images/clock.png" HorizontalAlignment="Right" Height="16"></Image>
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Name="tbLetters" Header="Редактор писем"></TabItem>
+            <TabItem Name="tbStat" Header="Статистика"></TabItem>
         </TabControl>
 
             

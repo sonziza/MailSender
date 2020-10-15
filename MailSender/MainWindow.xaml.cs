@@ -27,7 +27,7 @@ namespace MailSender
 
         private void btnToPlanner_Click(object sender, RoutedEventArgs e)
         {
-            tabList.SelectedItem = tbToPlanner;
+            tabList.SelectedItem = tbPlanner;
         }
     }
 }
