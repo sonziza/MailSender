@@ -125,7 +125,19 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Name="tbLetters" Header="Редактор писем"></TabItem>
+            <TabItem Name="tbLetters" Header="Редактор писем">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <RichTextBox Grid.Column="0" Grid.Row="0" ></RichTextBox>
+                </Grid>
+            </TabItem>
             <TabItem Name="tbStat" Header="Статистика"></TabItem>
         </TabControl>
 
