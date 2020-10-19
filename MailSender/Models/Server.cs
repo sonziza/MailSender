@@ -2,7 +2,7 @@
 
 namespace MailSender.Models
 {
-    class Server
+    public class Server
     {
         public string Address { get; set; }
 
