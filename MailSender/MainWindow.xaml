@@ -25,7 +25,7 @@
                     <ToolBarTray DockPanel.Dock="Top">
 
                         <ToolBar Name="tbSenders" Header="Отправители" Band="0">
-                            <ComboBox Name="SendersList" MinWidth="120" MaxWidth="200"
+                            <ComboBox Name="cbSendersList" MinWidth="120" MaxWidth="200"
                                       SelectedIndex="0">
                                 <ComboBoxItem Content="sonziza@yandex.ru"/>
                                 <ComboBoxItem Content="sonziza159@gmail.com"/>
@@ -52,7 +52,7 @@
                             </Button>
                         </ToolBar>
                         <ToolBar Name="tbSmtp" Header="Выберите smtp-сервер" Band="1">
-                            <ComboBox Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"></ComboBox>
+                            <ComboBox Name="cbSmtpList" Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"></ComboBox>
                             <Button>
                                 <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
                             </Button>
