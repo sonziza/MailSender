@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:m="clr-namespace:MailSender.Models"
+        xmlns:tool="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
@@ -109,7 +110,7 @@
                     <GroupBox Header="Время отправления"
                         Grid.Column="0" Grid.Row="1">
                         <StackPanel>
-                            <TextBox Name="tbTimePicker"/>
+                            <tool:TimePicker Format="LongTime"/>
                             <Button Name="btnPlan" >
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
