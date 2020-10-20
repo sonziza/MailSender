@@ -27,7 +27,7 @@
                     <ToolBarTray DockPanel.Dock="Top">
 
                         <ToolBar Name="tbSenders" Header="Отправители" Band="0">
-                            <ComboBox Name="cbSendersList" MinWidth="120" MaxWidth="200"
+                            <ComboBox Name="SendersList" MinWidth="120" MaxWidth="200"
                                       SelectedIndex="0"
                                 ItemsSource="{x:Static data:TestData.Senders}"   
                                 >                                   
@@ -53,7 +53,7 @@
                             </Button>
                         </ToolBar>
                         <ToolBar Name="tbSmtp" Header="Выберите smtp-сервер" Band="1">
-                            <ComboBox Name="cbSmtpList" Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"
+                            <ComboBox Name="ServersList" Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"
                                       ItemsSource="{x:Static data:TestData.Servers}"
                                       DisplayMemberPath="Address"
                                       />
@@ -80,7 +80,8 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid ItemsSource="{x:Static data:TestData.Recipients}" >
+                    <DataGrid Name="RecipientsList"
+                        ItemsSource="{x:Static data:TestData.Recipients}" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" MinWidth="30"/>
                             <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
@@ -117,7 +118,7 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Name="btnNow">
+                            <Button Name="btnNow" Click="btnNow_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" Text="Отправить сразу"></TextBlock>
                                     <Image Margin="5" Source="Images/clock.png" HorizontalAlignment="Right" Height="16"></Image>

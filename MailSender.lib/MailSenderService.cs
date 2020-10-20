@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MailSender.lib
 {
-    class MailSenderService
+    public class MailSenderService
     {
         public string ServerAddress { get; set; }
 
