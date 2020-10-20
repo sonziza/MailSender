@@ -24,10 +24,15 @@ namespace MailSender
         {
             var sender = SendersList.SelectedItem as Sender;
             if(sender is null) return;
-            
-            if(!(RecipientsList.SelectedItem is Recipient recipient)) return;
-            if(!(ServersList.SelectedItem is Server server)) return;
-            if(!(MessagesList.SelectedItem is Message message)) return;
+            if (!(RecipientsList.SelectedItem is Recipient recipient)) return;
+            if (!(ServersList.SelectedItem is Server server)) return;
+            var message = MessagesList.SelectedItem as Message;
+            if ((message is null) || (message.Body is null))
+            {
+                MessageBox.Show("Кажется, у вас пустое сообщение", "Ошибка отправки письма", MessageBoxButton.OK);
+                tabList.SelectedItem = tbMessages;
+                return;
+            }
 
             var send_service = new MailSenderService
             {

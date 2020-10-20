@@ -130,7 +130,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Name="tbLetters" Header="Редактор писем">
+            <TabItem Name="tbMessages" Header="Редактор писем">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
