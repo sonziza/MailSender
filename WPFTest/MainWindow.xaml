@@ -5,24 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest"
         xmlns:vm="clr-namespace:WPFTest.ViewModels"
+        xmlns:cmd="clr-namespace:WPFTest.Infrastructures.Commands"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="400" Width="500" MinWidth="350" MinHeight="220">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="40,40,0,0"
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" >
+            <MenuItem Header="Меню">
+                <MenuItem Header="Выход">
+                    <MenuItem.Command>
+                        <cmd:CloseWindowCommand/>
+                    </MenuItem.Command>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TextBox HorizontalAlignment="Left" 
                 VerticalAlignment="Top" Width="155"
                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-        <Slider HorizontalAlignment="Left" Margin="200,40,0,0"
+        <Slider HorizontalAlignment="Left" 
          VerticalAlignment="Top" Width="200" Minimum="0" Maximum="300"
          Value="{Binding X, ElementName=EllipseTranslator}"/>
-        <Ellipse  HorizontalAlignment="Left" Height="100" Margin="70,109,0,0"
+        <Ellipse  HorizontalAlignment="Left" Height="100" 
              Stroke="Red" StrokeThickness="10" Fill="Blue"
              VerticalAlignment="Top" Width="100">
             <Ellipse.RenderTransform>
                 <TranslateTransform x:Name="EllipseTranslator" X="0" Y="0"/>
             </Ellipse.RenderTransform>
         </Ellipse>
-    </Grid>
+    </DockPanel>
 </Window>
