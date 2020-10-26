@@ -22,15 +22,15 @@ namespace WPFTest.Infrastructures.Commands.Base
 
         bool ICommand.CanExecute(object parameter)
         {
-            return CanExcecute(parameter);
+            return CanExecute(parameter);
         }
 
         void ICommand.Execute(object parameter)
         {
-            Excecute(parameter);
+            Execute(parameter);
         }
 
-        protected bool CanExcecute(object parameter) => true;
-        protected abstract void Excecute(object parameter);
+        protected virtual bool CanExecute(object parameter) => true;
+        protected abstract void Execute(object parameter);
     }
 }

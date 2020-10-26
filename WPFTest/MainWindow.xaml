@@ -21,18 +21,26 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TextBox HorizontalAlignment="Left" 
-                VerticalAlignment="Top" Width="155"
-                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-        <Slider HorizontalAlignment="Left" 
-         VerticalAlignment="Top" Width="200" Minimum="0" Maximum="300"
-         Value="{Binding X, ElementName=EllipseTranslator}"/>
-        <Ellipse  HorizontalAlignment="Left" Height="100" 
+        <Grid>
+            <Button  
+            Margin="56,118,332,210"
+             Command="{Binding ShowDialogCommand}"
+             Content="Привет!"/>
+
+            <TextBox  
+                Width="155"
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,305,332" />
+            <Slider 
+          Width="200" Minimum="0" Maximum="300"
+         Value="{Binding X, ElementName=EllipseTranslator}" Margin="276,0,24,332"/>
+            <Ellipse  Height="100" 
              Stroke="Red" StrokeThickness="10" Fill="Blue"
-             VerticalAlignment="Top" Width="100">
-            <Ellipse.RenderTransform>
-                <TranslateTransform x:Name="EllipseTranslator" X="0" Y="0"/>
-            </Ellipse.RenderTransform>
-        </Ellipse>
+             VerticalAlignment="Top" Width="100" Margin="200,39,200,0">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="EllipseTranslator" X="0" Y="0"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+
+        </Grid>
     </DockPanel>
 </Window>

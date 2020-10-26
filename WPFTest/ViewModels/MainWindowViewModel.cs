@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using WPFTest.ViewModels.Base;
+using WPFTest.Infrastructures.Commands;
+using System.Windows.Input;
+using System.Windows;
 
 namespace WPFTest.ViewModels
 {
@@ -15,5 +18,13 @@ namespace WPFTest.ViewModels
             set => Set(ref _Title, value);
         }
 
+        private ICommand _ShowDialogCommand;
+        public ICommand ShowDialogCommand => _ShowDialogCommand ??= new LambdaCommand(OnShowDialogExecuted);
+
+        private void OnShowDialogExecuted(object parameter)
+        {
+            var message = parameter as string ?? "Hello WOrld!";
+            MessageBox.Show(message, "Окно сообщения от первой команды");
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace WPFTest.Infrastructures.Commands
 {
     class CloseWindowCommand : Command
     {
-        protected override void Excecute(object p)
+        protected override void Execute(object p)
         {
             var window = p as Window;
             if (window is null)
