@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest"
+        xmlns:vm="clr-namespace:WPFTest.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="500" MinWidth="350" MinHeight="220">
+        Title="{Binding Title}" Height="400" Width="500" MinWidth="350" MinHeight="220">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="50,40,0,0"
-                VerticalAlignment="Top" Width="100"
-                Text="TextBox" />
+        <TextBox HorizontalAlignment="Left" Margin="40,40,0,0"
+                VerticalAlignment="Top" Width="155"
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
         <Slider HorizontalAlignment="Left" Margin="200,40,0,0"
          VerticalAlignment="Top" Width="200" Minimum="0" Maximum="300"
          Value="{Binding X, ElementName=EllipseTranslator}"/>
