@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace MailSender.ViewModels.Base
 {
-    class ViewModel : INotifyPropertyChanged
+    abstract class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
