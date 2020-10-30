@@ -10,7 +10,7 @@ namespace MailSender.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
-        private string _Title = "Главное окно программы";
+        private string _Title = "Рассыльщик почты";
         /// <summary>Заголовок окна</summary>
         public string Title
         {

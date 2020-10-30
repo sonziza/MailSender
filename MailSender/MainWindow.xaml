@@ -8,9 +8,9 @@
         xmlns:m="clr-namespace:MailSender.Models"
         xmlns:tool="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="{Binding Title}" Height="450" Width="800"
         
-        DataContext=""
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         >
     <DockPanel>
         <Menu DockPanel.Dock="top">

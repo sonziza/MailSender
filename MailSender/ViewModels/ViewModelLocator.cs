@@ -10,6 +10,6 @@ namespace MailSender.ViewModels
     /// </summary>
     class ViewModelLocator
     {
-        public MainWindowViewModel MainWindowView => App.Services.GetRequiredService<MainWindowViewModel>();
+        public MainWindowViewModel MainWindowModel => App.Services.GetRequiredService<MainWindowViewModel>();
     }
 }
