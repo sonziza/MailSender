@@ -33,10 +33,9 @@
                         <ToolBar Name="tbSenders" Header="Отправители" Band="0">
                             <ComboBox Name="SendersList" MinWidth="120" MaxWidth="200"
                                       SelectedIndex="0"
-                                ItemsSource="{Binding Senders}"   
-                                >                                   
-                                <ComboBox.ItemTemplate>
-                                    
+                                      ItemsSource="{Binding Senders}" 
+                                      SelectedItem="{Binding SelectedSender}">                                   
+                                <ComboBox.ItemTemplate>                                    
                                     <DataTemplate DataType="m:Sender">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock 
@@ -47,7 +46,8 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button  ToolTip="Добавить" HorizontalAlignment="Stretch">
+                            <Button  ToolTip="Добавить" HorizontalAlignment="Stretch"
+                                     >
                                 <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
                             </Button>
                             <Button ToolTip="Редактировать"/>
@@ -59,12 +59,22 @@
                         <ToolBar Name="tbSmtp" Header="Выберите smtp-сервер" Band="1">
                             <ComboBox Name="ServersList" Margin="26,0,0,0"  MinWidth="100" MaxWidth="150"
                                       ItemsSource="{Binding Servers}"
+                                      SelectedItem="{Binding SelectedServer}"
                                       DisplayMemberPath="Address"
                                       />
-                            <Button>
+                            <Button ToolTip="Добавить"
+                                     Command="{Binding CreateNewServerCommand}"
+                                     CommandParameter="{Binding SelectedServer}">
                                 <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
                             </Button>
-                            <Button>
+                            <Button ToolTip="Редактировать"
+                                    Command="{Binding EditServerCommand}"
+                                    CommandParameter="{Binding SelectedServer}">
+                                <Image Source="Images\edit.png" HorizontalAlignment="Right" Height="12"/>
+                            </Button>
+                            <Button ToolTip="Удалить"
+                                    Command="{Binding DeleteServerCommand}"
+                                    CommandParameter="{Binding SelectedServer}">
                                 <Image Source="Images\remove.png" Width="12" Height="12"/>
                             </Button>
                         </ToolBar>
@@ -85,7 +95,8 @@
                         </ToolBar>
                     </ToolBarTray>
                     <DataGrid Name="RecipientsList"
-                        ItemsSource="{Binding Recipients}" >
+                        ItemsSource="{Binding Recipients}"
+                        SelectedItem="{Binding SelectedRecipient}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" MinWidth="30"/>
                             <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
@@ -142,6 +153,7 @@
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Список сообщений">
                         <ListBox Name="MessagesList" ItemsSource="{Binding Messages}" 
+                                 SelectedItem="{Binding SelectedMessage}"
                                  DisplayMemberPath="Subject"/>
                     </GroupBox>
                     <GroupBox Header="Редактирование сообщения" Grid.Column="1" Margin="10">

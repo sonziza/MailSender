@@ -25,7 +25,7 @@ namespace MailSender.Models
 
         public string Password { get; set; }
 
-        public string Description { get; }
+        public string Description { get; set; }
 
         //private readonly string _Description;
 

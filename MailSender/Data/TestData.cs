@@ -31,6 +31,7 @@ namespace MailSender.Data
 				Login = $"login{i}",
 				Password = TextEncoder.Encode($"Password-{i}"),
 				UseSSL = i%2==0,
+				Description = $"Description{i}",
 			})
 			.ToList();
 		public static List<Message> Messages { get; } = Enumerable.Range(1, 5)
