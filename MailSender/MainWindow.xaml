@@ -133,7 +133,8 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Name="btnNow" Click="btnNow_Click">
+                            <Button Name="btnNow" 
+                                    Command="{Binding SendMailCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5" Text="Отправить сразу"></TextBlock>
                                     <Image Margin="5" Source="Images/clock.png" HorizontalAlignment="Right" Height="16"></Image>
