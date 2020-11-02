@@ -7,6 +7,7 @@
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:m="clr-namespace:MailSender.Models"
         xmlns:tool="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:v="clr-namespace:MailSender.Views"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800"
         
@@ -94,15 +95,13 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Name="RecipientsList"
-                        ItemsSource="{Binding Recipients}"
-                        SelectedItem="{Binding SelectedRecipient}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" MinWidth="30"/>
-                            <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Адрес" MinWidth="160" Binding="{Binding Address}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <v:RecipientsView/>
+                    </Grid>
                 </DockPanel>
             </TabItem>
             <TabItem Name="tbPlanner" Header="Планировщик">
