@@ -17,27 +17,33 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="19.239"/>
+            <ColumnDefinition Width="25.871"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <TextBlock Grid.Column="2" Grid.Row="0" 
+                   Text="Окно редактирования" 
+                       HorizontalAlignment="Center"
+                       FontWeight="Bold"
+                       FontSize="20"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Id:" HorizontalAlignment="Left" Margin="13,0,0,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Name:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="11,0,0,0"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Address:" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Id:"/>
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="Name:"/>
-        <TextBlock Grid.Column="0" Grid.Row="2" Text="Address:"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding SelectedRecipient.Id}"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Text="{Binding SelectedRecipient.Name}" Margin="5,5,6,5"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding SelectedRecipient.Address}" Margin="5,5,6,5"/>
 
-        <!--<TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRecipient.Id}"/>-->
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRecipient.Name}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedRecipient.Address}"/>
-
-        <UniformGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Rows="1"
-                     VerticalAlignment="Top" HorizontalAlignment="Center"
-                     Margin="0,10">
+        <UniformGrid Grid.ColumnSpan="3" Grid.Row="4" Rows="1"
+                     VerticalAlignment="Top" HorizontalAlignment="Left"
+                     Margin="67,10,0,0">
             <Button Content="Сохранить" Margin="10,0" Padding="10,5"/>
             <Button Content="Создать" Margin="10,0" Padding="10,5"/>
         </UniformGrid>

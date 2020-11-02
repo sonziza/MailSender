@@ -19,6 +19,10 @@ namespace MailSender
         {
             tabList.SelectedItem = tbPlanner;
         }
-        
+
+        private void RecipientsView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,9 +1,6 @@
-﻿namespace MailSender.Models
-{
-    public class Recipient
-    {
-        public string Name { get; set; }
+﻿using MailSender.Models.Base;
 
-        public string Address { get; set; }
-    }
+namespace MailSender.Models
+{
+    public class Recipient : Person { }
 }

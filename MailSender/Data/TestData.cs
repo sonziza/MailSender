@@ -20,6 +20,7 @@ namespace MailSender.Data
 		public static List<Recipient> Recipients { get; } = Enumerable.Range(1, 5)
 			.Select(i => new Recipient
 			{
+                Id = i,
 				Name = $"Получатель {i}",
 				Address = $"recipient{i}.server.ru",
 			})

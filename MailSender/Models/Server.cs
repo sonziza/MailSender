@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MailSender.Models.Base;
+using System;
 
 namespace MailSender.Models
 {
-    public class Server
+    public class Server:Entity
     {
         public string Address { get; set; }
 
