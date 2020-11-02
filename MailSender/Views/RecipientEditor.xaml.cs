@@ -22,5 +22,19 @@ namespace MailSender.Views
         {
             InitializeComponent();
         }
+
+        private void TextBox_Error(object sender, ValidationErrorEventArgs e)
+        {
+            var control = (Control)e.OriginalSource;
+            //Added - если ошибка ПРОИЗОШЛА
+            if (e.Action == ValidationErrorEventAction.Added)
+            {
+                control.ToolTip = e.Error.ErrorContent.ToString();
+            }
+            else
+            {
+                control.ToolTip = "";
+            }
+        }
     }
 }

@@ -10,11 +10,11 @@ namespace MailSender.Models.Base
     }
     public abstract class NamedEntity : Entity
     {
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
     }
 
     public abstract class Person : NamedEntity
     {
-        public string Address { get; set; }
+        public virtual string Address { get; set; }
     }
 }
