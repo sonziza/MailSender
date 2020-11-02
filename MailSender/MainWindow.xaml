@@ -147,7 +147,7 @@
                 </Grid>
             </TabItem>
             <TabItem Name="tbMessages" Header="Редактор писем">
-                <Grid>
+                <Grid Validation.Error="Grid_Error">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -160,11 +160,11 @@
                     <GroupBox Header="Редактирование сообщения" Grid.Column="1" Margin="10">
                         <DockPanel>
                             <GroupBox Header="Заголовок" DockPanel.Dock="Top">
-                                <TextBox Text="{Binding SelectedItem.Subject, ElementName=MessagesList, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBox Text="{Binding SelectedItem.Subject, ElementName=MessagesList, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True,  ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}"/>
                             </GroupBox>
                             <GroupBox Header="Тело письма">
                                 <TextBox AcceptsReturn="True" TextWrapping="Wrap"
-                                         Text="{Binding SelectedItem.Body, ElementName=MessagesList}"/>
+                                         Text="{Binding SelectedItem.Body, ElementName=MessagesList, NotifyOnValidationError=True, ValidatesOnDataErrors=True,  ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}"/>
                                 <!--<RichTextBox/>-->
                             </GroupBox>
                         </DockPanel>

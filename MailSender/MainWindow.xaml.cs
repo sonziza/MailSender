@@ -2,6 +2,7 @@
 using System.Windows;
 using MailSender.lib;
 using System.Net.Mail;
+using System.Windows.Controls;
 
 namespace MailSender
 {
@@ -23,6 +24,20 @@ namespace MailSender
         private void RecipientsView_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Grid_Error(object sender, System.Windows.Controls.ValidationErrorEventArgs e)
+        {
+            var control = (Control)e.OriginalSource;
+            //Added - если ошибка ПРОИЗОШЛА
+            if (e.Action == ValidationErrorEventAction.Added)
+            {
+                control.ToolTip = e.Error.ErrorContent.ToString();
+            }
+            else
+            {
+                control.ToolTip = "";
+            }
         }
     }
 }
