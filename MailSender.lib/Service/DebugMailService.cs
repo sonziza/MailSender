@@ -12,7 +12,7 @@ namespace MailSender.Services
         string Address, int Port, bool UseSSL,
         string Login, string Password) =>
         new DebugMailSender(Address, Port, UseSSL, Login, Password);
-        private class DebugMailSender : IMailSender
+        public class DebugMailSender : IMailSender
         {
             private readonly string _Address;
             private readonly int _Port;
