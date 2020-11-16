@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFTest", "WPFTest\WPFTest.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.lib", "MailSender.lib\MailSender.lib.csproj", "{32A433C5-C01D-4F22-9F72-7A948FAF4D53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.lib.Tests", "Tests\MailSender.lib.Tests\MailSender.lib.Tests.csproj", "{DC73F8D8-2C43-430B-A5E4-135EC6520180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.lib.Tests", "Tests\MailSender.lib.Tests\MailSender.lib.Tests.csproj", "{DC73F8D8-2C43-430B-A5E4-135EC6520180}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeTasks", "HomeTasks\HomeTasks.csproj", "{C21C184E-C4F2-4C85-9AA9-5BA7C18F333C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{DC73F8D8-2C43-430B-A5E4-135EC6520180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC73F8D8-2C43-430B-A5E4-135EC6520180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC73F8D8-2C43-430B-A5E4-135EC6520180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C21C184E-C4F2-4C85-9AA9-5BA7C18F333C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C21C184E-C4F2-4C85-9AA9-5BA7C18F333C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C21C184E-C4F2-4C85-9AA9-5BA7C18F333C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C21C184E-C4F2-4C85-9AA9-5BA7C18F333C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{068DCC3C-2AF6-4231-A4E8-CFA4B7248895} = {757BF07B-FCFE-4FE4-B31E-86F0BE95A2D3}
 		{DC73F8D8-2C43-430B-A5E4-135EC6520180} = {757BF07B-FCFE-4FE4-B31E-86F0BE95A2D3}
+		{C21C184E-C4F2-4C85-9AA9-5BA7C18F333C} = {757BF07B-FCFE-4FE4-B31E-86F0BE95A2D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {284E06A5-F0CB-4F37-9FA5-E2D315401A16}
