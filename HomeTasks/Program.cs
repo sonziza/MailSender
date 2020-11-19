@@ -47,15 +47,6 @@ namespace HomeTasks
             C = ArrMul(A, B, n);
 
             Console.WriteLine(">>>Конец вычислений");
-            //for (int i = 0; i < n; i++)
-            //{
-            //    for (int j = 0; j < n; j++)
-            //    {
-            //        Console.Write(C[i, j] + "\t");
-            //    }
-            //    Console.WriteLine();
-            //}
-            //Parallel.For(0, 100, s => )
             Console.WriteLine(">>>Главный поток - конец");
             Console.ReadLine();
         }
@@ -66,20 +57,12 @@ namespace HomeTasks
 
             for (int i = 0; i < n; i++)
             {
-                //for (int j = 0; j < n; j++)
                 Parallel.For(0, n, j =>
             {
                 for (int k = 0; k < n; k++)
                 {
                     arrRes[i, j] += arrayA[i, k] * arrayB[k, j];
-                        //Console.WriteLine($"Выполняется задача {Task.CurrentId}");
                         Thread.Sleep(1);
-                        //Console.WriteLine($"Задача {Task.CurrentId} выполнена");
-
-                        //for (int k = 0; k < n; k++)
-                        //{
-                        //    arrRes[i, j] += arrayA[i, k] * arrayB[k, j];
-                        //};
                     }
             });
                 Console.Write("*");
