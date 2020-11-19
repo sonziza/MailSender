@@ -10,13 +10,6 @@ namespace MailSender.Models
             get { return base.Name; }
             set
             {
-                //if (value is null)
-                //{
-                //    throw new ArgumentNullException(nameof(value));
-                //}
-                ////if (value == "QWE") throw new ArgumentException("Запрещено вводить QWE!!!", nameof(value));
-                //if (value == "") throw new ArgumentException("Запрещено вводить пустые строки");
-
                 base.Name = value;
             }
         }

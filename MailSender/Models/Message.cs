@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
+using MailSender.Models.Base;
 
 namespace MailSender.Models
 {
-    public class Message:IDataErrorInfo
+    public class Message: Entity, IDataErrorInfo
     {
 
         public string Subject { get; set; }
