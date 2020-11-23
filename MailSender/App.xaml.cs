@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using MailSender.Data.Stores.InMemory;
+using MailSender.lib.Models;
+using MailSender.Data.Stores.InDB;
 
 namespace MailSender
 {
@@ -45,12 +48,16 @@ namespace MailSender
 #else
             services.AddTransient<IMailService, SmtpMailService>();
 #endif
-            var connection_str = host.Configuration.GetConnectionString("Default");
-
+            //Контекст БД
             services.AddDbContext<MailSenderDBContext>(opt => opt
                .UseSqlServer(host.Configuration.GetConnectionString("Default")));
+            //Инициализатор БД
             services.AddTransient<MailSenderDBInitializer>();
-            services.AddTransient<MailSenderDBContextInitializer>();
+            //services.AddTransient<MailSenderDBContextInitializer>();
+            //Хранилище данных - в памяти (ВЫБРАТЬ ОДНО ИЗ ДВУХ!)
+            //services.AddSingleton<IStore<Recipient>, RecipientsStoreInMemory>();
+            //Хранилище данных - в БД
+            services.AddSingleton<IStore<Recipient>, RecipientsStoreInDB>();
         }
         /// <summary>
         /// Инициализация сервисов как только запускается приложение

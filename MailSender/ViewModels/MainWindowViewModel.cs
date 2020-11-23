@@ -13,6 +13,7 @@ namespace MailSender.ViewModels
     class MainWindowViewModel : ViewModel
     {
         private readonly IMailService _MailService;
+        private readonly IStore<Recipient> _RecipientsStore;
 
         private string _Title = "Рассыльщик почты";
         /// <summary>Заголовок окна</summary>
@@ -198,16 +199,17 @@ namespace MailSender.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IMailService MailService)
+        public MainWindowViewModel(IMailService MailService, MailSenderDBContext db)
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
             //   модели - представления главного окна, прежде чем создать её сперва создаст SmtpMailService и
             //   передав объект этого сервиса в конструктор модели-представления создаст её
             _MailService = MailService;
+            _RecipientsStore = db.Recipients;
             //прицепляем списки объектов к коллекциям MainWindowVM
             Servers = new ObservableCollection<Server>(TestData.Servers);
             Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
+            Recipients = new ObservableCollection<Recipient>(_RecipientsStore.GetAll());
             Messages = new ObservableCollection<Message>(TestData.Messages);
 
 
