@@ -52,7 +52,10 @@ namespace MailSender
             services.AddTransient<MailSenderDBInitializer>();
             services.AddTransient<MailSenderDBContextInitializer>();
         }
-
+        /// <summary>
+        /// Инициализация сервисов как только запускается приложение
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
             Services.GetRequiredService<MailSenderDBInitializer>().Initialize();

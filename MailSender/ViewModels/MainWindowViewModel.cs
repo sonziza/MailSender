@@ -210,7 +210,7 @@ namespace MailSender.ViewModels
             Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
             Messages = new ObservableCollection<Message>(TestData.Messages);
 
-            var recipients = db.Recipients.ToArray();
+            //var recipients = db.Recipients.ToArray();
 
 
         }

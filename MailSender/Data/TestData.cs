@@ -1,13 +1,11 @@
 ﻿using MailSender.Models;
-using System;
 using System.Collections.Generic;
 using MailSender.lib.Service;
 using System.Linq;
-using System.Text;
 
 namespace MailSender.Data
 {
-	public static class TestData
+	static class TestData
 	{
 		public static List<Sender> Senders { get; } = Enumerable.Range(1, 5) //IEnumerable<int>
 			.Select(i => new Sender
@@ -20,7 +18,6 @@ namespace MailSender.Data
 		public static List<Recipient> Recipients { get; } = Enumerable.Range(1, 5)
 			.Select(i => new Recipient
 			{
-                Id = i,
 				Name = $"Получатель {i}",
 				Address = $"recipient{i}.server.ru",
 			})
