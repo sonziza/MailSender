@@ -44,8 +44,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Stores\InMemory\" />
-  </ItemGroup>
-
 </Project>

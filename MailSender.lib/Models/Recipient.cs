@@ -6,7 +6,8 @@ namespace MailSender.lib.Models
 {
     public class Recipient : Person, IDataErrorInfo {
 
-        public override string Name {
+        public override string Name
+        {
             get { return base.Name; }
             set
             {

@@ -1,4 +1,4 @@
-﻿using MailSender.Models;
+﻿using MailSender.lib.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

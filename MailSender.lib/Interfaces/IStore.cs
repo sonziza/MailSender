@@ -5,9 +5,9 @@ using MailSender.lib.Models.Base;
 
 namespace MailSender.lib.Interfaces
 {
-    class IStore<T> where T: Entity
+    public interface IStore<T> where T: Entity
     {
-        /*IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll();
 
         T GetById(int Id);
 
@@ -15,6 +15,6 @@ namespace MailSender.lib.Interfaces
 
         void Update(T Item);
 
-        void Delete(int Id);*/
+        void Delete(int Id);
     }
 }

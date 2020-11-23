@@ -1,6 +1,6 @@
 ﻿using MailSender.ViewModels.Base;
 using System.Collections.ObjectModel;
-using MailSender.Models;
+using MailSender.lib.Models;
 using MailSender.Data;
 using System.Windows.Input;
 using MailSender.Infrastructures.Commands;
@@ -198,7 +198,7 @@ namespace MailSender.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IMailService MailService, MailSenderDBContext db)
+        public MainWindowViewModel(IMailService MailService)
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
             //   модели - представления главного окна, прежде чем создать её сперва создаст SmtpMailService и
@@ -210,7 +210,6 @@ namespace MailSender.ViewModels
             Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
             Messages = new ObservableCollection<Message>(TestData.Messages);
 
-            //var recipients = db.Recipients.ToArray();
 
 
         }
