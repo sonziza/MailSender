@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MailSender.Data
-{
+{   
     class MailSenderDBContextInitializer : IDesignTimeDbContextFactory<MailSenderDBContext>
     {
         public MailSenderDBContext CreateDbContext(string[] args)

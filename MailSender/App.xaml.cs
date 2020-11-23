@@ -1,6 +1,7 @@
 ﻿using MailSender.lib.Interfaces;
 using MailSender.lib.Service;
 using MailSender.Services;
+using MailSender.Data;
 using MailSender.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailSender
 {
@@ -43,6 +45,20 @@ namespace MailSender
 #else
             services.AddTransient<IMailService, SmtpMailService>();
 #endif
+            var connection_str = host.Configuration.GetConnectionString("Default");
+
+            services.AddDbContext<MailSenderDBContext>(opt => opt
+               .UseSqlServer(host.Configuration.GetConnectionString("Default")));
+            services.AddTransient<MailSenderDBInitializer>();
+            services.AddTransient<MailSenderDBContextInitializer>();
         }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Services.GetRequiredService<MailSenderDBInitializer>().Initialize();
+            base.OnStartup(e);
+        }
+
     }
+
 }

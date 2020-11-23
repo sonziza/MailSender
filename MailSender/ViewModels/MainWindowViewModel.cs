@@ -198,7 +198,7 @@ namespace MailSender.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IMailService MailService)
+        public MainWindowViewModel(IMailService MailService, MailSenderDBContext db)
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
             //   модели - представления главного окна, прежде чем создать её сперва создаст SmtpMailService и
@@ -209,6 +209,10 @@ namespace MailSender.ViewModels
             Senders = new ObservableCollection<Sender>(TestData.Senders);
             Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
             Messages = new ObservableCollection<Message>(TestData.Messages);
+
+            var recipients = db.Recipients.ToArray();
+
+
         }
     }
 }
