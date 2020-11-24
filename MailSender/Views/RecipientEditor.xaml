@@ -38,7 +38,8 @@
         <TextBlock Grid.Column="0" Grid.Row="3" Text="Address:" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
 
         <TextBox Grid.Column="2" Grid.Row="1" 
-                 Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}"
+                 IsEnabled="False"
+                 Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}" 
                   />
         <TextBox Grid.Column="2" Grid.Row="2" 
                  Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True,  ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}"
@@ -48,8 +49,16 @@
         <UniformGrid Grid.ColumnSpan="3" Grid.Row="4" Rows="1"
                      VerticalAlignment="Top" HorizontalAlignment="Left"
                      Margin="67,10,0,0">
-            <Button Content="Сохранить" Margin="10,0" Padding="10,5"/>
-            <Button Content="Создать" Margin="10,0" Padding="10,5"/>
+            <Button Content="Сохранить" Margin="10,0" Padding="10,5"
+                                     Command="{Binding EditRecipientCommand}"
+                                     CommandParameter="{Binding SelectedRecipient}"
+                    />
+            <Button Content="Создать" Margin="10,0" Padding="10,5"
+                                     Command="{Binding CreateNewRecipientCommand}"
+                                     CommandParameter="{Binding SelectedRecipient}"/>
+            <Button Content="Удалить" Margin="10,0" Padding="10,5"
+                                     Command="{Binding DeleteRecipientCommand}"
+                                     CommandParameter="{Binding SelectedRecipient}"/>
         </UniformGrid>
     </Grid>
 </UserControl>

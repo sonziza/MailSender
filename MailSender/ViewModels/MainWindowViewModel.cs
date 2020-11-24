@@ -163,6 +163,77 @@ namespace MailSender.ViewModels
 
         #endregion
 
+
+        #region Работа с получателями
+
+        #region EditRecipientCommand - редактировать текущего получателя
+        //TODO:редактирование - нужно взаимод-е с коллекцией
+        private ICommand _EditRecipientCommand;
+
+        public ICommand EditRecipientCommand => _EditRecipientCommand
+            ??= new LambdaCommand(OnEditRecipientCommandExecuted, CanEditRecipientCommandExecute);
+
+        private bool CanEditRecipientCommandExecute(object p) => p is Recipient || SelectedRecipient != null;
+
+        private void OnEditRecipientCommandExecuted(object p)
+        {
+            var recipient = p as Recipient ?? SelectedRecipient;
+            if (recipient is null) return;
+            /*работа с БД*/
+            _RecipientsStore.Update(recipient);
+
+            MessageBox.Show($"Изменен получатель:\n {recipient.Name}: {recipient.Address}!", "Редактирование");
+        }
+
+        #endregion
+
+        #region CreateNewRecipientCommand - создать нового получателя
+        //TODO: текущая запись тоже корректируется!
+        private ICommand _CreateNewRecipientCommand;
+
+        public ICommand CreateNewRecipientCommand => _CreateNewRecipientCommand
+            ??= new LambdaCommand(OnCreateNewRecipientCommandExecuted, CanCreateNewRecipientCommandExecute);
+
+        private bool CanCreateNewRecipientCommandExecute(object p) => true;
+
+        private void OnCreateNewRecipientCommandExecuted(object p)
+        {
+            var recipient = new Recipient
+            {
+                Name = SelectedRecipient.Name,
+                Address = SelectedRecipient.Address
+            };
+            recipient = _RecipientsStore.Add(recipient);
+            Recipients.Add(recipient);
+            MessageBox.Show("Создание нового получателя!", "Добавление");
+        }
+
+        #endregion
+        #region DeleteRecipientCommand - удалить текущего получателя
+
+        private ICommand _DeleteRecipientCommand;
+
+        public ICommand DeleteRecipientCommand => _DeleteRecipientCommand
+            ??= new LambdaCommand(OnDeleteRecipientCommandExecuted, CanDeleteRecipientCommandExecute);
+
+        private bool CanDeleteRecipientCommandExecute(object p) => p is Recipient || SelectedRecipient != null;
+
+        private void OnDeleteRecipientCommandExecuted(object p)
+        {
+            var recipient = p as Recipient ?? SelectedRecipient;
+            if (recipient is null) return;
+            _RecipientsStore.Delete(recipient.Id);
+            Recipients.Remove(recipient);
+            SelectedRecipient = Recipients.FirstOrDefault();
+
+            //MessageBox.Show($"Удаление сервера {recipient.Address}!", "Управление серверами");
+        }
+
+        #endregion
+        #endregion
+
+
+
         #region SendMailMessageCommand - отправка почты
         /// <summary>Отправка почты</summary>
         private ICommand _SendMailCommand;
@@ -199,13 +270,13 @@ namespace MailSender.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IMailService MailService, MailSenderDBContext db)
+        public MainWindowViewModel(IMailService MailService, IStore<Recipient> RecipientsStore)
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
             //   модели - представления главного окна, прежде чем создать её сперва создаст SmtpMailService и
             //   передав объект этого сервиса в конструктор модели-представления создаст её
             _MailService = MailService;
-            _RecipientsStore = db.Recipients;
+            _RecipientsStore = RecipientsStore;
             //прицепляем списки объектов к коллекциям MainWindowVM
             Servers = new ObservableCollection<Server>(TestData.Servers);
             Senders = new ObservableCollection<Sender>(TestData.Senders);
