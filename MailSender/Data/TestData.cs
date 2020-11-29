@@ -11,7 +11,8 @@ namespace MailSender.Data
 			.Select(i => new Sender
 			{
 				Name = $"Отправитель {i}",
-				Address = $"sender_{i}@server.ru"
+				Address = $"sender_{i}@server.ru",
+				Password = TextEncoder.Encode($"Password-{i}")
 			})
 			.ToList();
 
@@ -27,8 +28,6 @@ namespace MailSender.Data
 			{
 				Name = $"Name {i}",
 				Address = $"smtp.server{i}.com",
-				Login = $"login{i}",
-				Password = TextEncoder.Encode($"Password-{i}"),
 				UseSSL = i%2==0,
 				Description = $"Description{i}",
 			})

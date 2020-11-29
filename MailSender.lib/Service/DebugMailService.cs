@@ -10,8 +10,8 @@ namespace MailSender.Services
     {
         public IMailSender GetSender(
         string Address, int Port, bool UseSSL,
-        string Login, string Password) =>
-        new DebugMailSender(Address, Port, UseSSL, Login, Password);
+        string Password) =>
+        new DebugMailSender(Address, Port, UseSSL, Password);
         
     }
     public class DebugMailSender : IMailSender
@@ -19,23 +19,21 @@ namespace MailSender.Services
         private readonly string _Address;
         private readonly int _Port;
         private readonly bool _UseSsl;
-        private readonly string _Login;
         private readonly string _Password;
         public DebugMailSender(
         string Address, int Port, bool UseSsl,
-        string Login, string Password)
+        string Password)
         {
             _Address = Address;
             _Port = Port;
             _UseSsl = UseSsl;
-            _Login = Login;
             _Password = Password;
         }
         public void Send(string From, string To, string Title, string Message)
         {
             Debug.WriteLine(
-            "Почтовый сервер {0}:{1}(ssl:{2})[login:{3} - pass:{4}]",
-            _Address, _Port, _UseSsl, _Login, _Password);
+            "Почтовый сервер {0}:{1}(ssl:{2})[pass:{3}]",
+            _Address, _Port, _UseSsl, _Password);
             Debug.WriteLine("Отправка письма от:{0} к:{1}\r\n\t{2}\r\n{3}",
             From, To, Title, Message);
         }

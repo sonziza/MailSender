@@ -5,7 +5,7 @@
     /// </summary>
     public interface IMailService
     {
-        IMailSender GetSender(string Server, int Port, bool SSL, string Login, string Password);
+        IMailSender GetSender(string Server, int Port, bool SSL,  string Password);
     }
 
     public interface IMailSender

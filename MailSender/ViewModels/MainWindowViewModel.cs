@@ -105,8 +105,6 @@ namespace MailSender.ViewModels
                 out string address,
                 out int port,
                 out bool useSSL,
-                out string login,
-                out string password,
                 out string description
                 )) return;
 
@@ -115,8 +113,6 @@ namespace MailSender.ViewModels
                 Address = address,
                 Port = port,
                 UseSSL = useSSL,
-                Login = login,
-                Password = password,
                 Description = description,
             };
             Servers.Add(server);
@@ -263,9 +259,10 @@ namespace MailSender.ViewModels
             var recipient = SelectedRecipient;
             var message = SelectedMessage;
 
-            var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, server.Login, server.Password);
+            var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, sender.Password);
             mail_sender.Send(sender.Address, recipient.Address, message.Subject, message.Body);
 
+            MessageBox.Show("Письмо отправлено!", "Отправка почты");
             //Statistic.MessageSended();
         }
         #endregion

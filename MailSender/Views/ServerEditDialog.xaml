@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="ServerEditDialog" Height="200" Width="800">
+        Title="ServerEditDialog" Height="135" Width="800">
     <DockPanel Margin="5">
         <DockPanel.Resources>
             <!-- Для всех GroupBox... -->
@@ -57,14 +57,5 @@
                 </GroupBox>
             </DockPanel>
         </Border>
-        <!-- UniformGrid позволяет содержимое сделать одинакового размера -->
-        <UniformGrid DockPanel.Dock="Top" Rows="1">
-            <GroupBox Header="Логин">
-                <TextBox Name="Login"/>
-            </GroupBox>
-            <GroupBox Header="Пароль">
-                <PasswordBox Name="Password"/>
-            </GroupBox>
-        </UniformGrid>
     </DockPanel>
 </Window>

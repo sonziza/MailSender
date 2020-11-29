@@ -15,9 +15,9 @@ namespace MailSender.lib.Service
         ///  фабрика, которая будет создавать нужные объекты - параметры отправки почты
         /// </summary>
         /// <returns></returns>
-        public IMailSender GetSender(string Server, int Port, bool SSL, string Login, string Password)
+        public IMailSender GetSender(string Server, int Port, bool SSL, string Password)
         {
-            return new SmtpMailSender(Server, Port, SSL, Login, Password);
+            return new SmtpMailSender(Server, Port, SSL, Password);
         }
     }
 
@@ -26,15 +26,13 @@ namespace MailSender.lib.Service
         private readonly string _Address;
         private readonly int _Port;
         private readonly bool _Ssl;
-        private readonly string _Login;
         private readonly string _Password;
 
-        public SmtpMailSender(string Address, int Port, bool SSL, string Login, string Password)
+        public SmtpMailSender(string Address, int Port, bool SSL, string Password)
         {
             _Address = Address;
             _Port = Port;
             _Ssl = SSL;
-            _Login = Login;
             _Password = Password;
         }
 
@@ -54,8 +52,8 @@ namespace MailSender.lib.Service
                     client.EnableSsl = _Ssl;
 
                     client.Credentials = new NetworkCredential
-                    {
-                        UserName = _Login,
+                    {                        
+                        UserName = SenderAddress,
                         Password = _Password
                     };
 

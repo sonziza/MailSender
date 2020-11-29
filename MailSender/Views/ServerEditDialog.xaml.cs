@@ -56,8 +56,7 @@ namespace MailSender
         /// </summary>
         public static bool ShowDialog(
         string Title,
-        ref string Address, ref int Port, ref bool UseSSL,
-        ref string Login, ref string Password)
+        ref string Address, ref int Port, ref bool UseSSL)
         {
             // Создаём окно и инициализируем его свойства
             var window = new ServerEditDialog
@@ -67,8 +66,6 @@ namespace MailSender
                 ServerAddress = { Text = Address },
                 ServerPort = { Text = Port.ToString() },
                 ServerSSL = { IsChecked = UseSSL },
-                Login = { Text = Login },
-                Password = { Password = Password },
                 // Берём класс "Приложение"
                 Owner = Application
             // получаем экземпляр текущего приложения
@@ -83,8 +80,6 @@ namespace MailSender
             if (window.ShowDialog() != true) return false;
             Address = window.ServerAddress.Text;
             Port = int.Parse(window.ServerPort.Text);
-            Login = window.Login.Text;
-            Password = window.Password.Password;
             return true;
         }
 
@@ -98,23 +93,17 @@ namespace MailSender
         out string Address,
         out int Port,
         out bool UseSSL,
-        out string Description,
-        out string Login,
-        out string Password)
+        out string Description)
         {
             // Инициализируем переменные значениями на случай отмены операции
             Address = null;
             Port = 25;
             UseSSL = false;
             Description = null;
-            Login = null;
-            Password = null;
             return ShowDialog("Создать сервер",
             ref Address,
             ref Port,
-            ref UseSSL,
-            ref Login,
-            ref Password);
+            ref UseSSL);
         }
     }
 }
