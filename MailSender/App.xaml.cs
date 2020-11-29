@@ -44,9 +44,9 @@ namespace MailSender
         {
             services.AddSingleton<MainWindowViewModel>();
 #if DEBUG
-            services.AddTransient<IMailService, DebugMailService>();
-#else
             services.AddTransient<IMailService, SmtpMailService>();
+            //services.AddTransient<IMailService, DebugMailService>();
+#else
 #endif
             //Контекст БД
             services.AddDbContext<MailSenderDBContext>(opt => opt
@@ -58,6 +58,10 @@ namespace MailSender
             //services.AddSingleton<IStore<Recipient>, RecipientsStoreInMemory>();
             //Хранилище данных - в БД
             services.AddSingleton<IStore<Recipient>, RecipientsStoreInDB>();
+            services.AddSingleton<IStore<Sender>, SendersStoreInDB>();
+            services.AddSingleton<IStore<Server>, ServersStoreInDB>();
+            services.AddSingleton<IStore<Message>, MessagesStoreInDB>();
+            //services.AddSingleton<IStore<Recipient>, RecipientsStoreInDB>();
         }
         /// <summary>
         /// Инициализация сервисов как только запускается приложение

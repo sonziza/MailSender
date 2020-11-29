@@ -9,7 +9,7 @@ namespace MailSender.lib
 {
     public class MailSenderService
     {
-        public string ServerAddress { get; set; }
+     /*   public string ServerAddress { get; set; }
 
         public int ServerPort { get; set; }
 
@@ -51,7 +51,7 @@ namespace MailSender.lib
                     }
                 }
             }
-        }
+        }*/
 
     }
 }
