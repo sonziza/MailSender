@@ -4,14 +4,16 @@ using MailSender.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MailSender.Migrations
 {
     [DbContext(typeof(MailSenderDBContext))]
-    partial class MailSenderDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201129133731_Colunm Name inServers")]
+    partial class ColunmNameinServers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

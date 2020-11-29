@@ -1,26 +1,27 @@
-﻿using MailSender.lib.Interfaces;
-using MailSender.lib.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using MailSender.lib.Interfaces;
+using MailSender.lib.Models.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailSender.Data.Stores.InDB
 {
-    class RecipientsStoreInDB : IStore<Recipient>
+    class StoreInDB<T> : IStore<T> where T : Entity
     {
         private readonly MailSenderDBContext _db;
+        private readonly DbSet<T> _Set;
 
-        public RecipientsStoreInDB(MailSenderDBContext db) => _db = db;
+        public StoreInDB(MailSenderDBContext db)
+        {
+            _db = db;
+            _Set = db.Set<T>();
+        }
 
-        public IEnumerable<Recipient> GetAll() => _db.Recipients.ToArray();
+        public IEnumerable<T> GetAll() => _Set.ToArray();
 
-        //public Recipient GetById(int Id) => _db.Recipients.Find(Id);
-        //public Recipient GetById(int Id) => _db.Recipients.FirstOrDefault(r => r.Id == Id);
-        public Recipient GetById(int Id) => _db.Recipients.SingleOrDefault(r => r.Id == Id);
+        public T GetById(int Id) => _Set.SingleOrDefault(r => r.Id == Id);
 
-        public Recipient Add(Recipient Item)
+        public T Add(T Item)
         {
             _db.Entry(Item).State = EntityState.Added;
             //_db.Recipients.Add(Item);
@@ -28,7 +29,7 @@ namespace MailSender.Data.Stores.InDB
             return Item;
         }
 
-        public void Update(Recipient Item)
+        public void Update(T Item)
         {
             _db.Entry(Item).State = EntityState.Modified;
             //_db.Recipients.Update(Item);

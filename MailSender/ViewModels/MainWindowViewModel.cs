@@ -14,6 +14,9 @@ namespace MailSender.ViewModels
     {
         private readonly IMailService _MailService;
         private readonly IStore<Recipient> _RecipientsStore;
+        private readonly IStore<Sender> _SendersStore;
+        private readonly IStore<Server> _ServersStore;
+        private readonly IStore<Message> _MessagesStore;
 
         private string _Title = "Рассыльщик почты";
         /// <summary>Заголовок окна</summary>
@@ -270,18 +273,26 @@ namespace MailSender.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IMailService MailService, IStore<Recipient> RecipientsStore)
+        public MainWindowViewModel(IMailService MailService, 
+            IStore<Recipient> RecipientsStore,
+            IStore<Server> ServersStore,
+            IStore<Sender> SendersStore,
+            IStore<Message> MessagesStore  
+            )
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
-            //   модели - представления главного окна, прежде чем создать её сперва создаст SmtpMailService и
+            //   модели - представления главного окна, прежде чем создать её сперва создаст SmtpMailService и Store и
             //   передав объект этого сервиса в конструктор модели-представления создаст её
             _MailService = MailService;
             _RecipientsStore = RecipientsStore;
+            _ServersStore = ServersStore;
+            _SendersStore = SendersStore;
+            _MessagesStore = MessagesStore;
             //прицепляем списки объектов к коллекциям MainWindowVM
-            Servers = new ObservableCollection<Server>(TestData.Servers);
-            Senders = new ObservableCollection<Sender>(TestData.Senders);
             Recipients = new ObservableCollection<Recipient>(_RecipientsStore.GetAll());
-            Messages = new ObservableCollection<Message>(TestData.Messages);
+            Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
+            Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
+            Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
 
 
 
