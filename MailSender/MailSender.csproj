@@ -15,6 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\clock.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\remove.png" />
+    <Resource Include="Images\scheduler.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.6.0" />
     <PackageReference Include="FontAwesome5" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />

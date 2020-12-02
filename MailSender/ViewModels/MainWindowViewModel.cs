@@ -90,6 +90,7 @@ namespace MailSender.ViewModels
             set => Set(ref _SelectedMessage, value);
         }
         #region Команды
+        #region Серверы
         #region CreateNewServerCommand - создать новый сервер
 
         private ICommand _CreateNewServerCommand;
@@ -116,6 +117,11 @@ namespace MailSender.ViewModels
                 Description = description,
             };
             Servers.Add(server);
+
+            server = _ServersStore.Add(server);
+            Servers.Add(server);
+
+
             //MessageBox.Show("Создание нового сервера!", "Управление серверами");
         }
 
@@ -134,6 +140,9 @@ namespace MailSender.ViewModels
         {
             var server = p as Server ?? SelectedServer;
             if (server is null) return;
+
+            /*работа с БД*/
+            _ServersStore.Update(server);
 
             MessageBox.Show($"Редактирование сервера {server.Address}!", "Управление серверами");
         }
@@ -154,6 +163,7 @@ namespace MailSender.ViewModels
             var server = p as Server ?? SelectedServer;
             if (server is null) return;
 
+            _ServersStore.Delete(server.Id);
             Servers.Remove(server);
             SelectedServer = Servers.FirstOrDefault();
 
@@ -161,9 +171,9 @@ namespace MailSender.ViewModels
         }
 
         #endregion
+        #endregion
 
-
-        #region Работа с получателями
+        #region Получатели
 
         #region EditRecipientCommand - редактировать текущего получателя
         //TODO:редактирование - нужно взаимод-е с коллекцией
@@ -231,7 +241,60 @@ namespace MailSender.ViewModels
         #endregion
         #endregion
 
+        #region Отправители
+        #region CreateNewSenderCommand - создать нового отправителя
 
+        private ICommand _CreateNewSenderCommand;
+
+        public ICommand CreateNewSenderCommand => _CreateNewSenderCommand
+            ??= new LambdaCommand(OnCreateNewSenderCommandExecuted, CanCreateNewSenderCommandExecute);
+
+        private bool CanCreateNewSenderCommandExecute(object p) => true;
+
+        private void OnCreateNewSenderCommandExecuted(object p)
+        {
+            if (!SenderEditDialog.Create(
+                out string address,
+                out string name,
+                out string password
+                )) return;
+
+            var sender = new Sender
+            {
+                Address = address,
+                Name = name,
+                Password = password
+            };
+            sender = _SendersStore.Add(sender);
+            Senders.Add(sender);
+            MessageBox.Show("Создание нового отправителя!", "Управление отправителями");
+        }
+
+        #endregion
+
+        #region DeleteSenderCommand - удалить текущего отправителя
+
+        private ICommand _DeleteSenderCommand;
+
+        public ICommand DeleteSenderCommand => _DeleteSenderCommand
+            ??= new LambdaCommand(OnDeleteSenderCommandExecuted, CanDeleteSenderCommandExecute);
+
+        private bool CanDeleteSenderCommandExecute(object p) => p is Sender || SelectedSender != null;
+
+        private void OnDeleteSenderCommandExecuted(object p)
+        {
+            var sender = p as Sender ?? SelectedSender;
+            if (sender is null) return;
+            _SendersStore.Delete(sender.Id);
+            Senders.Remove(sender);
+            SelectedSender = Senders.FirstOrDefault();
+
+            //MessageBox.Show($"Удаление сервера {sender.Address}!", "Управление серверами");
+        }
+
+        #endregion
+
+        #endregion
 
         #region SendMailMessageCommand - отправка почты
         /// <summary>Отправка почты</summary>

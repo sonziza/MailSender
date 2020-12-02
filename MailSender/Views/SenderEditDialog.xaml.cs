@@ -14,34 +14,19 @@ using System.Windows.Shapes;
 namespace MailSender
 {
     /// <summary>
-    /// Логика взаимодействия для ServerEditDialog.xaml
+    /// Логика взаимодействия для SenderEditDialog.xaml
     /// </summary>
-    public partial class ServerEditDialog : Window
+    public partial class SenderEditDialog : Window
     {
-        public ServerEditDialog()
+        public SenderEditDialog()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Обработчик события ввода текста
-        /// Блокирует ввод нечисловых данных
-        /// </summary>
-        private void OnPortTextInput(object Sender, TextCompositionEventArgs E)
-        {
-            // Если источник события - не текстовое поле ввода
-            // или текст в поле ввода отсутствует, то...
-            // ничего не делаем
-            if (!(Sender is TextBox text_box) || text_box.Text == "") return;
-            // иначе если не удалось превратить текст в число, то
-            // отмечаем событие как обработанное - текст не введётся
-            E.Handled = !int.TryParse(text_box.Text, out _);
         }
         /// <summary>
         /// Обработчик события кнопки
         /// Если кнопка IsCancel == true, то результатом диалога будет false
         /// </summary>
-        private void OnButtonClick(object Sender, RoutedEventArgs E)
+        private void OnButtonClick(object _Sender, RoutedEventArgs E)
         {
             DialogResult = !((Button)E.OriginalSource).IsCancel;
             Close();
@@ -56,16 +41,16 @@ namespace MailSender
         /// </summary>
         public static bool ShowDialog(
         string Title,
-        ref string Address, ref int Port, ref bool UseSSL)
+        ref string Address, ref string Name, ref string Password)
         {
             // Создаём окно и инициализируем его свойства
-            var window = new ServerEditDialog
+            var window = new SenderEditDialog
             {
                 Title = Title,
                 // Так можно инициализировать свойства вложенных объектов
-                ServerAddress = { Text = Address },
-                ServerPort = { Text = Port.ToString() },
-                ServerSSL = { IsChecked = UseSSL },
+                SenderAddress = { Text = Address },
+                SenderName = { Text = Name },
+                SenderPass = { Password = Password },
                 // Берём класс "Приложение"
                 Owner = Application
             // получаем экземпляр текущего приложения
@@ -78,9 +63,9 @@ namespace MailSender
             .FirstOrDefault(window => window.IsActive)
             };
             if (window.ShowDialog() != true) return false;
-            Address = window.ServerAddress.Text;
-            Port = int.Parse(window.ServerPort.Text);
-            UseSSL = window.ServerSSL.IsEnabled;
+            Address = window.SenderAddress.Text;
+            Name = window.SenderName.Text;
+            Password = window.SenderPass.Password;
             return true;
         }
 
@@ -92,19 +77,17 @@ namespace MailSender
         /// </summary>
         public static bool Create(
         out string Address,
-        out int Port,
-        out bool UseSSL,
-        out string Description)
+        out string Name,
+        out string Password)
         {
             // Инициализируем переменные значениями на случай отмены операции
             Address = null;
-            Port = 25;
-            UseSSL = false;
-            Description = null;
-            return ShowDialog("Создать сервер",
+            Name = null;
+            Password = null;
+            return ShowDialog("Создать отправителя",
             ref Address,
-            ref Port,
-            ref UseSSL);
+            ref Name,
+            ref Password);
         }
     }
 }

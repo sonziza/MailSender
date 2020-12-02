@@ -35,25 +35,29 @@
                             <ComboBox Name="SendersList" MinWidth="120" MaxWidth="200"
                                       SelectedIndex="0"
                                       ItemsSource="{Binding Senders}" 
-                                      SelectedItem="{Binding SelectedSender}">                                   
-                                <ComboBox.ItemTemplate>                                    
+                                      SelectedItem="{Binding SelectedSender}">
+                                <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="m:Sender">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock 
                                                 Text="{Binding Name}" ToolTip="{Binding Address}"/>
-                                            <TextBlock>: </TextBlock>
+                                            <TextBlock>:</TextBlock>
                                             <TextBlock Text="{Binding Address}" Opacity="0.7"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button  ToolTip="Добавить" HorizontalAlignment="Stretch"
-                                     >
+                            <Button  ToolTip="Добавить" HorizontalAlignment="Stretch"                                     
+                                     Command="{Binding CreateNewSenderCommand}"
+                                     CommandParameter="{Binding SelectedSender}">
                                 <Image Source="Images\add.png" HorizontalAlignment="Right" Height="12"/>
                             </Button>
                             <Button ToolTip="Редактировать"/>
                             <Image Source="Images\edit.png" HorizontalAlignment="Right" Height="12"/>
-                            <Button ToolTip="Удалить">
+                            <Button ToolTip="Удалить"
+                                     Command="{Binding CreateNewSenderCommand}"
+                                     CommandParameter="{Binding SelectedSender}"
+                                    >
                                 <Image Source="Images\remove.png" HorizontalAlignment="Right" Height="12"/>
                             </Button>
                         </ToolBar>
@@ -119,7 +123,7 @@
                         Grid.Column="0" Grid.Row="0"
                         Name="cldSheduler"
                         HorizontalAlignment="Left"
-                        SelectionMode="MultipleRange">                    
+                        SelectionMode="MultipleRange">
                     </Calendar>
                     <GroupBox Header="Время отправления"
                         Grid.Column="0" Grid.Row="1">
@@ -144,6 +148,79 @@
                         </StackPanel>
 
                     </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.RowSpan="1"
+                              Header="Планировщик заданий">
+                        <ListBox>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="UseLayoutRounding" Value="True"/>
+                                </Style>
+
+                            </ListBox.ItemContainerStyle>
+                            <ListBoxItem>
+                                <GroupBox          
+                                    Background="#FFE5F3F4">
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Задание</TextBlock>
+                                            <Button BorderThickness="0" Background="Transparent" Foreground="Red">X</Button>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <StackPanel >
+                                        <DockPanel>
+                                            <TextBlock Text="Дата и время оптравления: "></TextBlock>
+                                            <TextBlock Text="22.12.2020 21:50"></TextBlock>
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Отправитель: "></TextBlock>
+                                            <TextBlock Text="Иванов Иван"></TextBlock>
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Получатель: "></TextBlock>
+                                            <TextBlock Text="Петров Алексей"></TextBlock>
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Тема письма: "></TextBlock>
+                                            <TextBlock Text="Сообщение 1"></TextBlock>
+                                        </DockPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </ListBoxItem>
+                            <ListBoxItem>
+                                <GroupBox          
+                                    Background="#FFE5F3F4">
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>Задание</TextBlock>
+                                            <Button BorderThickness="0" Background="Transparent" Foreground="Red">X</Button>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+                                    <StackPanel >
+                                        <DockPanel>
+                                            <TextBlock Text="Дата и время оптравления: "></TextBlock>
+                                            <TextBlock Text="02.01.2021 00:50"></TextBlock>
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Отправитель: "></TextBlock>
+                                            <TextBlock Text="Васильченко Петр"></TextBlock>
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Получатель: "></TextBlock>
+                                            <TextBlock Text="Ким Леонид"></TextBlock>
+                                        </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Text="Тема письма: "></TextBlock>
+                                            <TextBlock Text="С Новым годом!"></TextBlock>
+                                        </DockPanel>
+                                    </StackPanel>
+                                </GroupBox>
+                            </ListBoxItem>
+                        </ListBox>
+
+                    </GroupBox>
+
+
                 </Grid>
             </TabItem>
             <TabItem Name="tbMessages" Header="Редактор писем">
@@ -174,10 +251,38 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Name="tbStat" Header="Статистика"></TabItem>
+            <TabItem Name="tbStat" Header="Статистика">
+                <Grid Margin="15">
+                    <Grid.Resources>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Последнее время запуска: "></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="22.12.2020 22:55"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="Число запусков: "></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="2"></TextBlock>
+                    <TextBlock Grid.Row="2" Text="Число отправителей: "></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="0"></TextBlock>
+                    <TextBlock Grid.Row="3" Text="Число получателей: "></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="0"></TextBlock>
+                    <TextBlock Grid.Row="4" Text="Число отправленных писем: "></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="0"></TextBlock>
+                    <Canvas Grid.Row="5" Grid.ColumnSpan="2" Background="#FFCADAE7"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
-            
-        
+
+
     </DockPanel>
 </Window>
