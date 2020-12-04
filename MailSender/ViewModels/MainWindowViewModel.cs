@@ -18,6 +18,8 @@ namespace MailSender.ViewModels
         private readonly IStore<Server> _ServersStore;
         private readonly IStore<Message> _MessagesStore;
 
+        public StatisticViewModel Statistic { get; } = new StatisticViewModel();
+
         private string _Title = "Рассыльщик почты";
         /// <summary>Заголовок окна</summary>
         public string Title
@@ -325,6 +327,8 @@ namespace MailSender.ViewModels
             var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, sender.Password);
             mail_sender.Send(sender.Address, recipient.Address, message.Subject, message.Body);
 
+            //StatisticViewModel - вносим результат
+            Statistic.MessageSent();
             MessageBox.Show("Письмо отправлено!", "Отправка почты");
             //Statistic.MessageSended();
         }
@@ -355,7 +359,8 @@ namespace MailSender.ViewModels
             Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
 
 
-
+            //фиксируем дату и время запуска программы
+            Statistic.LastDataAppLaunch();
         }
     }
 }

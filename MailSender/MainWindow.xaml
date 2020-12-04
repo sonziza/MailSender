@@ -268,7 +268,7 @@
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Последнее время запуска: "></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="22.12.2020 22:55"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Statistic.LastLaunch}"></TextBlock>
                     <TextBlock Grid.Row="1" Text="Число запусков: "></TextBlock>
                     <TextBlock Grid.Row="1" Grid.Column="1" Text="2"></TextBlock>
                     <TextBlock Grid.Row="2" Text="Число отправителей: "></TextBlock>
@@ -276,7 +276,7 @@
                     <TextBlock Grid.Row="3" Text="Число получателей: "></TextBlock>
                     <TextBlock Grid.Row="3" Grid.Column="1" Text="0"></TextBlock>
                     <TextBlock Grid.Row="4" Text="Число отправленных писем: "></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Text="0"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Statistic.SentMessagesCount}"></TextBlock>
                     <Canvas Grid.Row="5" Grid.ColumnSpan="2" Background="#FFCADAE7"/>
                 </Grid>
             </TabItem>
