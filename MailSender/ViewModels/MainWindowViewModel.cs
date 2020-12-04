@@ -32,6 +32,7 @@ namespace MailSender.ViewModels
         private ObservableCollection<Sender> _Senders;
         private ObservableCollection<Recipient> _Recipients;
         private ObservableCollection<Message> _Messages;
+        private ObservableCollection<MessageSent> _MessageSents;
 
         public ObservableCollection<Server> Servers
         {
@@ -55,6 +56,11 @@ namespace MailSender.ViewModels
         {
             get => _Messages;
             set => Set(ref _Messages, value);
+        }
+        public ObservableCollection<MessageSent> MessageSents
+        {
+            get => _MessageSents;
+            set => Set(ref _MessageSents, value);
         }
 
         /// <summary>
@@ -122,9 +128,6 @@ namespace MailSender.ViewModels
 
             server = _ServersStore.Add(server);
             Servers.Add(server);
-
-
-            //MessageBox.Show("Создание нового сервера!", "Управление серверами");
         }
 
         #endregion
@@ -341,7 +344,7 @@ namespace MailSender.ViewModels
             IStore<Recipient> RecipientsStore,
             IStore<Server> ServersStore,
             IStore<Sender> SendersStore,
-            IStore<Message> MessagesStore  
+            IStore<Message> MessagesStore
             )
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
@@ -357,8 +360,9 @@ namespace MailSender.ViewModels
             Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
             Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
             Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
-
-
+            //пока заполняем коллекцию отправленных писем тестовыми данными
+            MessageSents = new ObservableCollection<MessageSent>(TestData.MessageSents);
+            
             //фиксируем дату и время запуска программы
             Statistic.LastDataAppLaunch();
         }

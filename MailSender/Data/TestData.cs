@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using MailSender.lib.Models;
 using System.Collections.Generic;
 using MailSender.lib.Service;
@@ -7,6 +8,16 @@ namespace MailSender.Data
 {
 	static class TestData
 	{
+		public static List<MessageSent> MessageSents { get; } = Enumerable.Range(1, 5)
+			.Select(i => new MessageSent
+			{
+				AddresFrom = $"Отправитель{i}",
+				AssressTo = $"Получатель{i}",
+				DateTimeSent = DateTime.Now,
+				MessageBody = $"Сообщение {i}",
+				MessageSubject = $"Тело сообщения{i}"
+			}
+				).ToList();
 		public static List<Sender> Senders { get; } = Enumerable.Range(1, 5) //IEnumerable<int>
 			.Select(i => new Sender
 			{
