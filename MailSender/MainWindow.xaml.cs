@@ -1,4 +1,4 @@
-﻿using MailSender.Models;
+﻿//using MailSender.Models;
 using System.Windows;
 using MailSender.lib;
 using System.Net.Mail;
