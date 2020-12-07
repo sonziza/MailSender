@@ -7,11 +7,17 @@
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:tool="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:v="clr-namespace:MailSender.Views"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800"
         
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <DockPanel>
         <Menu DockPanel.Dock="top">
             <MenuItem Header="Файл"/>

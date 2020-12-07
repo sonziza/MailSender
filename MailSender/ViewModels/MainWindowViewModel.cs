@@ -337,8 +337,12 @@ namespace MailSender.ViewModels
         }
         #endregion
 
-        #endregion
-        public void OnLoading()
+        #region LoadDataCommand - загрузка данных в приложение
+        private ICommand _LoadDataCommand;
+        public ICommand LoadDataCommand => _LoadDataCommand ??= new LambdaCommand(OnLoadDataCommandExecuted, CanLoadDataCommandExecute);
+        private bool CanLoadDataCommandExecute(object p) => true;
+
+        private void OnLoadDataCommandExecuted(object p)
         {
             //прицепляем списки объектов к коллекциям MainWindowVM
             Recipients = new ObservableCollection<Recipient>(_RecipientsStore.GetAll());
@@ -349,7 +353,13 @@ namespace MailSender.ViewModels
             MessageSents = new ObservableCollection<SentMessage>(TestData.SentMessages);
 
             //фиксируем дату и время запуска программы
-            Statistic.LastDataAppLaunch();
+            Statistic.LastDateAppLaunch();
+        }
+        #endregion
+
+        #endregion
+        public void OnLoading()
+        {
         }
 
         public MainWindowViewModel(IMailService MailService, 

@@ -29,6 +29,6 @@ namespace MailSender.ViewModels
         }
         #endregion
         public void MessageSent() => SentMessagesCount++;
-        public void LastDataAppLaunch() => LastLaunch = DateTime.Now;
+        public void LastDateAppLaunch() => LastLaunch = DateTime.Now;
     }
 }
