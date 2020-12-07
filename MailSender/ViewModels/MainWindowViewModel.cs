@@ -7,6 +7,7 @@ using MailSender.Infrastructures.Commands;
 using System.Windows;
 using System.Linq;
 using MailSender.lib.Interfaces;
+using System;
 
 namespace MailSender.ViewModels
 {
@@ -32,7 +33,7 @@ namespace MailSender.ViewModels
         private ObservableCollection<Sender> _Senders;
         private ObservableCollection<Recipient> _Recipients;
         private ObservableCollection<Message> _Messages;
-        private ObservableCollection<SentMessage> _MessageSents;
+        private ObservableCollection<SentMessage> _SentMessages;
 
         public ObservableCollection<Server> Servers
         {
@@ -57,10 +58,10 @@ namespace MailSender.ViewModels
             get => _Messages;
             set => Set(ref _Messages, value);
         }
-        public ObservableCollection<SentMessage> MessageSents
+        public ObservableCollection<SentMessage> SentMessages
         {
-            get => _MessageSents;
-            set => Set(ref _MessageSents, value);
+            get => _SentMessages;
+            set => Set(ref _SentMessages, value);
         }
 
         /// <summary>
@@ -330,10 +331,21 @@ namespace MailSender.ViewModels
             var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, sender.Password);
             mail_sender.Send(sender.Address, recipient.Address, message.Subject, message.Body);
 
+            MessageBox.Show("Письмо отправлено!", "Отправка почты");
+
             //StatisticViewModel - вносим результат
             Statistic.MessageSent();
-            MessageBox.Show("Письмо отправлено!", "Отправка почты");
-            //Statistic.MessageSended();
+            //Добавляем в коллекцию отправленные сообщения
+            SentMessage sentMessage = new SentMessage()
+            {
+                AddresFrom = sender.Address,
+                AssressTo = recipient.Address,
+                DateTimeSent = DateTime.Now,
+                MessageSubject = message.Subject,
+                MessageBody = message.Body,
+            };
+            SentMessages.Add(sentMessage);
+
         }
         #endregion
 
@@ -349,8 +361,8 @@ namespace MailSender.ViewModels
             Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
             Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
             Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
-            //пока заполняем коллекцию отправленных писем тестовыми данными
-            MessageSents = new ObservableCollection<SentMessage>(TestData.SentMessages);
+            //пока заполняем коллекцию отправленных писем тестовыми данными  +  новый обьект SentMessageService
+            SentMessages = new ObservableCollection<SentMessage>(TestData.SentMessages);
 
             //фиксируем дату и время запуска программы
             Statistic.LastDateAppLaunch();
