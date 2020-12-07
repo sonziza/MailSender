@@ -18,6 +18,7 @@ namespace MailSender.ViewModels
         private readonly IStore<Sender> _SendersStore;
         private readonly IStore<Server> _ServersStore;
         private readonly IStore<Message> _MessagesStore;
+        private readonly IStore<SentMessage> _SentMessagesStore;
 
         public StatisticViewModel Statistic { get; } = new StatisticViewModel();
 
@@ -335,7 +336,7 @@ namespace MailSender.ViewModels
 
             //StatisticViewModel - вносим результат
             Statistic.MessageSent();
-            //Добавляем в коллекцию отправленные сообщения
+            //Добавляем в коллекцию/БД отправленные сообщения
             SentMessage sentMessage = new SentMessage()
             {
                 AddresFrom = sender.Address,
@@ -344,8 +345,8 @@ namespace MailSender.ViewModels
                 MessageSubject = message.Subject,
                 MessageBody = message.Body,
             };
+            sentMessage = _SentMessagesStore.Add(sentMessage);
             SentMessages.Add(sentMessage);
-
         }
         #endregion
 
@@ -361,8 +362,7 @@ namespace MailSender.ViewModels
             Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
             Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
             Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
-            //пока заполняем коллекцию отправленных писем тестовыми данными  +  новый обьект SentMessageService
-            SentMessages = new ObservableCollection<SentMessage>(TestData.SentMessages);
+            SentMessages = new ObservableCollection<SentMessage>(_SentMessagesStore.GetAll());
 
             //фиксируем дату и время запуска программы
             Statistic.LastDateAppLaunch();
@@ -370,15 +370,13 @@ namespace MailSender.ViewModels
         #endregion
 
         #endregion
-        public void OnLoading()
-        {
-        }
 
         public MainWindowViewModel(IMailService MailService, 
             IStore<Recipient> RecipientsStore,
             IStore<Server> ServersStore,
             IStore<Sender> SendersStore,
-            IStore<Message> MessagesStore
+            IStore<Message> MessagesStore,
+            IStore<SentMessage> SentMessagesStore
             )
         {
             //   при загрузке приложения контейнер сервисов как только получит запрос на создание
@@ -389,6 +387,7 @@ namespace MailSender.ViewModels
             _ServersStore = ServersStore;
             _SendersStore = SendersStore;
             _MessagesStore = MessagesStore;
+            _SentMessagesStore = SentMessagesStore;
             
         }
     }
