@@ -32,7 +32,7 @@ namespace MailSender.ViewModels
         private ObservableCollection<Sender> _Senders;
         private ObservableCollection<Recipient> _Recipients;
         private ObservableCollection<Message> _Messages;
-        private ObservableCollection<MessageSent> _MessageSents;
+        private ObservableCollection<SentMessage> _MessageSents;
 
         public ObservableCollection<Server> Servers
         {
@@ -57,7 +57,7 @@ namespace MailSender.ViewModels
             get => _Messages;
             set => Set(ref _Messages, value);
         }
-        public ObservableCollection<MessageSent> MessageSents
+        public ObservableCollection<SentMessage> MessageSents
         {
             get => _MessageSents;
             set => Set(ref _MessageSents, value);
@@ -338,7 +338,19 @@ namespace MailSender.ViewModels
         #endregion
 
         #endregion
+        public void OnLoading()
+        {
+            //прицепляем списки объектов к коллекциям MainWindowVM
+            Recipients = new ObservableCollection<Recipient>(_RecipientsStore.GetAll());
+            Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
+            Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
+            Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
+            //пока заполняем коллекцию отправленных писем тестовыми данными
+            MessageSents = new ObservableCollection<SentMessage>(TestData.SentMessages);
 
+            //фиксируем дату и время запуска программы
+            Statistic.LastDataAppLaunch();
+        }
 
         public MainWindowViewModel(IMailService MailService, 
             IStore<Recipient> RecipientsStore,
@@ -355,16 +367,7 @@ namespace MailSender.ViewModels
             _ServersStore = ServersStore;
             _SendersStore = SendersStore;
             _MessagesStore = MessagesStore;
-            //прицепляем списки объектов к коллекциям MainWindowVM
-            Recipients = new ObservableCollection<Recipient>(_RecipientsStore.GetAll());
-            Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
-            Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
-            Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
-            //пока заполняем коллекцию отправленных писем тестовыми данными
-            MessageSents = new ObservableCollection<MessageSent>(TestData.MessageSents);
             
-            //фиксируем дату и время запуска программы
-            Statistic.LastDataAppLaunch();
         }
     }
 }

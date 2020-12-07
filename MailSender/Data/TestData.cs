@@ -8,8 +8,8 @@ namespace MailSender.Data
 {
 	static class TestData
 	{
-		public static List<MessageSent> MessageSents { get; } = Enumerable.Range(1, 5)
-			.Select(i => new MessageSent
+		public static List<SentMessage> SentMessages { get; } = Enumerable.Range(1, 5)
+			.Select(i => new SentMessage
 			{
 				AddresFrom = $"Отправитель{i}",
 				AssressTo = $"Получатель{i}",

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MailSender.lib.Models
 {
-    public class MessageSent: Entity
+    public class SentMessage: Entity
     {
         public string AddresFrom { get; set; }
         public string AssressTo { get; set; }

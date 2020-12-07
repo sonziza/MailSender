@@ -20,6 +20,7 @@ namespace MailSender.Data
             InitializeSenders();
             InitializeServers();
             InitializeMessages();
+            //InitializeSentMessages();
         }
 
         private void InitializeRecipients()
@@ -51,6 +52,13 @@ namespace MailSender.Data
             if (_db.Servers.Any()) return;
 
             _db.Servers.AddRange(TestData.Servers);
+            _db.SaveChanges();
+        }
+        private void InitializeSentMessages()
+        {
+            if (_db.MessageSents.Any()) return;
+
+            _db.MessageSents.AddRange(TestData.SentMessages);
             _db.SaveChanges();
         }
     }
