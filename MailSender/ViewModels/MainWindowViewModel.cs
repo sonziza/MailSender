@@ -370,6 +370,7 @@ namespace MailSender.ViewModels
             //фиксируем дату и время запуска программы
             Statistic.LastDateAppLaunch();
             Statistic.GetMessagesInDay(SentMessages);
+            Statistic.DrawDiagram();
         }
         #endregion
 

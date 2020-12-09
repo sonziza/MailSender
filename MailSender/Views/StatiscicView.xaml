@@ -33,22 +33,37 @@
         <TextBlock Grid.Row="3" Grid.Column="1" Text="0"></TextBlock>
         <TextBlock Grid.Row="4" Text="Число отправленных писем: "></TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Statistic.SentMessagesCount}"></TextBlock>
+        <oxy:Plot Grid.Row="5" Grid.ColumnSpan="3" Title="{Binding Title}">
+            <oxy:Plot.Axes>
+                <oxy:DateTimeAxis Position="Bottom" IntervalType="Days" StringFormat="dd/MM/yyyy" >
+                </oxy:DateTimeAxis>
+                <oxy:LinearAxis Position="Left" Minimum="0">
+                </oxy:LinearAxis>
+            </oxy:Plot.Axes>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Statistic.Points}"/>
+                
+            </oxy:Plot.Series>
+        </oxy:Plot>
+
+
         <!--<oxy:PlotView Grid.Row="5" Grid.ColumnSpan="3" 
-                  Background="#FFBAD3DC" Model="{Binding Statistic.DiagramModel}" >
+                  Background="#FFBAD3DC" Model="{Binding Statistic.DiagramModel}">
+            
         </oxy:PlotView>-->
 
-        <oxy:Plot Grid.Row="5" Grid.ColumnSpan="3" 
+        <!--<oxy:Plot Grid.Row="5" Grid.ColumnSpan="3" 
                   Background="#FFBAD3DC" Title="Статистика" >
-            <!--<oxy:Plot.Axes>
+            <oxy:Plot.Axes>
                 <oxy:DateTimeAxis Position="Bottom" IntervalType="Days" AbsoluteMinimum="0">
                 </oxy:DateTimeAxis>
                 <oxy:LinearAxis Position="Left" Minimum="0">
                 </oxy:LinearAxis>
-            </oxy:Plot.Axes>-->
+            </oxy:Plot.Axes>
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding Statistic.SentMessageGroups}"/>
             </oxy:Plot.Series>
-        </oxy:Plot>
+        </oxy:Plot>-->
         <!--<Canvas Grid.Row="5" Grid.ColumnSpan="3" 
                 Background="#FFCADAE7"
                 >
