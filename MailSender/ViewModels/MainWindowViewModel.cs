@@ -8,6 +8,7 @@ using System.Windows;
 using System.Linq;
 using MailSender.lib.Interfaces;
 using System;
+using OxyPlot;
 
 namespace MailSender.ViewModels
 {
@@ -30,6 +31,7 @@ namespace MailSender.ViewModels
             set => Set(ref _Title, value);
         }
 
+        #region коллекции элементов
         private ObservableCollection<Server> _Servers;
         private ObservableCollection<Sender> _Senders;
         private ObservableCollection<Recipient> _Recipients;
@@ -64,10 +66,9 @@ namespace MailSender.ViewModels
             get => _SentMessages;
             set => Set(ref _SentMessages, value);
         }
+        #endregion
 
-        /// <summary>
-        /// Обеспечиваем возможность выбора текущего элемента в списках данных
-        /// </summary>
+        #region Обеспечиваем возможность выбора текущего элемента в списках данных
         private Server _SelectedServer;
 
         public Server SelectedServer
@@ -99,6 +100,8 @@ namespace MailSender.ViewModels
             get => _SelectedMessage;
             set => Set(ref _SelectedMessage, value);
         }
+        #endregion
+
         #region Команды
         #region Серверы
         #region CreateNewServerCommand - создать новый сервер
@@ -366,10 +369,12 @@ namespace MailSender.ViewModels
 
             //фиксируем дату и время запуска программы
             Statistic.LastDateAppLaunch();
+            Statistic.GetMessagesInDay(SentMessages);
         }
         #endregion
 
         #endregion
+
 
         public MainWindowViewModel(IMailService MailService, 
             IStore<Recipient> RecipientsStore,
@@ -388,7 +393,7 @@ namespace MailSender.ViewModels
             _SendersStore = SendersStore;
             _MessagesStore = MessagesStore;
             _SentMessagesStore = SentMessagesStore;
-            
+
         }
     }
 }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MailSender.Views"
+             xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="15">
@@ -32,8 +33,29 @@
         <TextBlock Grid.Row="3" Grid.Column="1" Text="0"></TextBlock>
         <TextBlock Grid.Row="4" Text="Число отправленных писем: "></TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Statistic.SentMessagesCount}"></TextBlock>
-        <Canvas Grid.Row="5" Grid.ColumnSpan="2" Background="#FFCADAE7"/>
-        <DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="6"
+        <!--<oxy:PlotView Grid.Row="5" Grid.ColumnSpan="3" 
+                  Background="#FFBAD3DC" Model="{Binding Statistic.DiagramModel}" >
+        </oxy:PlotView>-->
+
+        <oxy:Plot Grid.Row="5" Grid.ColumnSpan="3" 
+                  Background="#FFBAD3DC" Title="Статистика" >
+            <!--<oxy:Plot.Axes>
+                <oxy:DateTimeAxis Position="Bottom" IntervalType="Days" AbsoluteMinimum="0">
+                </oxy:DateTimeAxis>
+                <oxy:LinearAxis Position="Left" Minimum="0">
+                </oxy:LinearAxis>
+            </oxy:Plot.Axes>-->
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding Statistic.SentMessageGroups}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <!--<Canvas Grid.Row="5" Grid.ColumnSpan="3" 
+                Background="#FFCADAE7"
+                >
+            <Line x:Name="Date" Stroke="AliceBlue" StrokeThickness="5" X1="{Binding SentMessages}"></Line>
+            <Path Fill="DeepPink"/>
+        </Canvas>-->
+        <DataGrid Grid.Row="0" Grid.Column="2" Grid.RowSpan="5"
                               Name="RecipientsList" ItemsSource="{Binding SentMessages}"
                   SelectedItem="{Binding SelectedSentMessage}"
                   AutoGenerateColumns="False"

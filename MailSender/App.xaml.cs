@@ -44,8 +44,8 @@ namespace MailSender
         {
             services.AddSingleton<MainWindowViewModel>();
 #if DEBUG
-            services.AddTransient<IMailService, SmtpMailService>();
-            //services.AddTransient<IMailService, DebugMailService>();
+            //services.AddTransient<IMailService, SmtpMailService>();
+            services.AddTransient<IMailService, DebugMailService>();
 #else
 #endif
             //Контекст БД
